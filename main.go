@@ -23,17 +23,7 @@ func main() {
 	fmt.Println("Created secret : ")
 	fmt.Println("ID: ", secret.ID, " Name: ", secret.Name, " Path: ", secret.Path)
 
-	// We create a folder called `confidential-folder` on the root path
-	folderPath := "/"
-	folder, _ := api.CreateFolder(&secret_manager.CreateFolderRequest{
-		ProjectID: projectID,
-		Name:      "confidential-folder",
-		Path:      &folderPath,
-	})
-	fmt.Println("New folder : ")
-	fmt.Println("Name: ", folder.Name, " Path: ", folder.Path)
-
-	// We migrate the `ultra-confidential` secret into the `confidential-folder` folder
+	// Now we want to migrate the `ultra-confidential` secret into the `confidential-folder` folder
 	destinationPath := "/confidential-folder"
 	updatedSecret, _ := api.UpdateSecret(&secret_manager.UpdateSecretRequest{
 		SecretID: secret.ID,
